@@ -4,7 +4,6 @@ import { Box, createTheme, CssBaseline } from "@mui/material";
 import { useState } from "react";
 import "./App.css";
 import { useThemeMode } from "./Helpers/Context";
-import MainPage from "./Pages/MainPage";
 import BlitheRoute from "./route/BlitheRoute";
 
 function App() {
@@ -62,9 +61,6 @@ function App() {
         <BlitheRoute/>
       </Box>
    </ThemeProvider>
-  // <Box bgcolor={"red"}>
-  //   <h1>hello</h1>
-  // </Box>
   );
 }
 

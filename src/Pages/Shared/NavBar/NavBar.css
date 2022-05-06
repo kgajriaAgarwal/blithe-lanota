@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@500&family=Quintessential&family=Roboto+Slab:wght@300&display=swap');
+
+#menu.menu{
+    top: 2.5rem;
+}
+
+.welcome-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

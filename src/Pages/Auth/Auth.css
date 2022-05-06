@@ -1,0 +1,29 @@
+
+ .bg-img{
+    width: 50%; 
+    height:  90%; 
+    object-fit: cover;
+}
+
+.input{
+    width: 22rem;
+}
+
+.divider{
+    color: var(--primary-bg);
+    font-weight: 800;
+}
+
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+ 
+@media screen and (max-width: 600px) {
+    .bg-img{
+        width: 100%; 
+    }
+  }

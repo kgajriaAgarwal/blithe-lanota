@@ -1,0 +1,68 @@
+/* .notes-form{
+    
+    height:40vh;
+    width:50rem;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color:white;
+} */
+
+.main-container{
+    padding-top: 1.5rem;
+}
+
+.create-note{
+    margin: 0 5px;
+}
+
+.notes{
+    background-repeat: no-repeat;
+    object-fit: cover;
+    display: flex;
+    flex-direction: 'column';
+    justify-content: 'flex-start';
+    align-items: 'flex-start';
+    height:  20rem;;
+    width: 50rem;
+}
+
+.notes-form-light{
+    background: url(../../Assets/Images/light-note-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.notes-form-dark{
+    background: url(../../Assets/Images/note-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bottom-container{
+    width: 100%;
+    display: flex;
+    gap:10px;
+    /* position: static; */
+    /* align-self: flex-end; */
+    margin-top: auto;
+    padding: 5px;
+}
+
+.color-span{
+    height:25px;
+    width: 25px;
+}
+
+
+.btn-add{
+    margin-left: auto;
+}
+
+
+/* #txt.txt{
+    width: 100% !important;
+} */

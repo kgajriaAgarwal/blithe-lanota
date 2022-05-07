@@ -17,7 +17,6 @@ export const actionLogin = async (data) => {
     if (response.data.encodedToken) {
       setLocalStorage("authData", response.data.encodedToken);
     }
-    // dispatch({ type: Actions.LOGIN, data: response.data });
     return response;
   };
 

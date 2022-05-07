@@ -15,11 +15,14 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import PublicIcon from '@mui/icons-material/Public';
 import { Link } from 'react-router-dom';
+import { getLocalStorage } from '../../../Helpers/Common/Utils';
 
 
 export const NavBar = (props) =>  {
 
         const [open, setOpen] = useState(false);
+        let authData = getLocalStorage('authData');
+
         // const [anchorEl, setAnchorEl] = React.useState(null);
         // const open = Boolean(anchorEl);
         // const handleClick = (event) => {
@@ -109,43 +112,6 @@ export const NavBar = (props) =>  {
                         // label="Home" 
                         value="/"
                         />
-                         
-                        {/* <CustomTab icon={<Badge badgeContent={4} color="error">
-                            <Tooltip title="My network">
-                                <PublicIcon />
-                            </Tooltip>
-                        </Badge>} 
-                        // label="Home" 
-                        value="/my-network"
-                        /> */}
-                        
-
-                        {/* <CustomTab icon={<Badge badgeContent={4} color="error">
-                            <Tooltip title="Messages">
-                                <MailIcon  />
-                            </Tooltip>
-                            </Badge>} 
-                            // label="Messages" 
-                            value="/messages" 
-                        /> */}
-                    
-
-                        {/* <CustomTab icon={<Badge badgeContent={4} color="error">
-                            <Tooltip title="Jobs">
-                                <WorkIcon  />
-                            </Tooltip>
-                        </Badge>} 
-                        value="/jobs" 
-                        /> */}
-
-                        {/* <CustomTab icon={<Badge badgeContent={4} color="error" >
-                            <Tooltip title="Notifications">
-                                <NotificationsIcon  />
-                            </Tooltip>
-                        </Badge>} 
-                        // label="Notifications" 
-                        value="/notifications" 
-                        /> */}
 
                         <CustomTab icon={
                             <Tooltip title="My Profile">
@@ -232,9 +198,9 @@ export const NavBar = (props) =>  {
                 <Link to="./login">
                     <CustomMenuItem>
                         <ListItemIcon>
-                            <Logout fontSize="small" />
+                            <Logout fontSize="small" />    
                         </ListItemIcon>
-                        Login
+                        {authData? "Logout" : "Login"}
                     </CustomMenuItem>
                 </Link>
             </Menu>

@@ -2,9 +2,11 @@ import { ThemeProvider } from "@emotion/react";
 import { Box, createTheme, CssBaseline } from "@mui/material";
 
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import { useThemeMode } from "./Helpers/Context";
 import BlitheRoute from "./route/BlitheRoute";
+
 
 function App() {
 
@@ -60,6 +62,11 @@ function App() {
       <Box className="App" bgcolor={"Background.default"}>
         <BlitheRoute/>
       </Box>
+      <ToastContainer
+      autoClose={4000}
+      className="custom-toaster-main-cls"
+      toastClassName="custom-toaster-bg"
+      />
    </ThemeProvider>
   );
 }

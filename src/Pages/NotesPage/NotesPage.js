@@ -1,9 +1,12 @@
 import { Stack, Box, TextField, styled, FormControl, InputLabel, Select, MenuItem, Avatar, NativeSelect, Typography, Button } from '@mui/material';
 import react, { useEffect, useState } from 'react';
-import { SideBar } from '../Shared';
+import { NoteCard, SideBar } from '../Shared';
 import './NotesPage.css'
 import { useThemeMode } from '../../Helpers/Context';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { getAllNotes } from '../../Helpers/Services/actions';
+// import { getAllCategory } from '../../Helpers/Services/actions';
+import { useNavigate } from 'react-router-dom';
 
 const FormBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -24,6 +27,8 @@ const FormBox = styled(Box)(({ theme }) => ({
 const NotesPage = (props) => {
 
     const {themeMode} = useThemeMode();
+    const navigate = useNavigate();
+    const [data, setData] = useState([]);
     const [age, setAge] = useState('');
     const [color, setColor] = useState(['#FFCCF9',
         '#D5AAFF',
@@ -36,11 +41,30 @@ const NotesPage = (props) => {
         setAge(event.target.value);
     };
 
+    useEffect(()=> {
+        getAllNotes()
+        .then(res=> {
+            if(res.status === 200){
+                setData(res.data.categories);
+                setTop_categories( res.data.categories.filter(category =>
+                    category?.categoryStatus? category.categoryStatus === 'top':''
+                ))
+            }else{
+                //setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+            }            
+        })
+        .catch((error) => {
+                //setAlertContent({_id: uuid(), isShow:true, type:'ERROR', content:"Unexpected error.Please try again later."})
+            })
+        }
+    ,[])
+
     return(
         <>
             <Stack direction='row' spacing={2} justifyContent='space-between'>            
                 <SideBar/>
-                <Box flex={4} className='main-container' 
+                <Box className='main-container-wrapper' flex={4}>
+                <Box  className='main-container' 
                 >
                     <FormBox
                         component="form"
@@ -119,6 +143,8 @@ const NotesPage = (props) => {
                             <Button variant="outlined" className='btn-add'>Add</Button>
                         </Box>
                         
+
+                      
                         {/* <FeedCard image="https://picsum.photos/200/300"/>
                         <FeedCard image="https://picsum.photos/200"/>
                         <FeedCard image="https://picsum.photos/id/237/200/150"/>
@@ -127,6 +153,13 @@ const NotesPage = (props) => {
                         <FeedCard image="https://picsum.photos/200/300"/> */}
                        
                     </FormBox>
+                </Box>
+                <Box className='notes-container' >
+                    <NoteCard/>
+                    <NoteCard/>
+                    <NoteCard/>
+                    <NoteCard/>
+                </Box>
                 </Box>
             </Stack>
             {/* <AddPost/> */}

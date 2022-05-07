@@ -1,4 +1,12 @@
 
+.main-container-wrapper{
+    /* background-color: cadetblue; */
+    width: '70%',;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .main-container{
     padding-top: 1.5rem;
 }
@@ -46,4 +54,13 @@
 
 .btn-add{
     margin-left: auto;
+}
+
+
+.notes-container{
+    /* background-color: cornflowerblue; */
+    display: flex;
+    width: 70%;
+    flex-wrap: wrap;
+    gap: 10px
 }

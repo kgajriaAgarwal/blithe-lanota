@@ -208,6 +208,11 @@ export const NavBar = (props) =>  {
                         <Avatar /> Profile
                     </CustomMenuItem>
                 </Link>
+                <Link to="/mockman">
+                    <CustomMenuItem>
+                        Mockman
+                    </CustomMenuItem>
+                </Link>
                 <CustomMenuItem>
                     <Avatar /> My account
                 </CustomMenuItem>

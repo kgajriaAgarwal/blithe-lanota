@@ -1,7 +1,12 @@
 import { ThemeModeProvider, useThemeMode } from "./ThemeContext"; 
 
-export{
-    ThemeModeProvider,
 
-    useThemeMode
+export{
+    //provider
+    ThemeModeProvider,
+    
+
+    //custom hooks
+    useThemeMode,
+    
 }

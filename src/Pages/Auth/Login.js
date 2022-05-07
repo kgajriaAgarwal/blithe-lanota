@@ -5,18 +5,17 @@ import {
   styled,
   Button,
   FormControl,
+  FormHelperText,
 } from "@mui/material";
-import react, { useState } from "react";
+import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Auth.css";
 import { Input } from "../Shared";
-
-const InputBox = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "10px",
-}));
+import { actionLogin } from "../../Helpers/Services/actions";
+import { showErrorToast, showSuccessToast } from "../../Helpers/Common/Utils";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { validateLogin } from "../../Helpers/Validations";
 
 const CustomStack = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -62,6 +61,7 @@ const AuthContainer = styled(Box)(({ theme }) => ({
 }));
 
 const Login = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -87,13 +87,70 @@ const Login = () => {
     });
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // console.log("handle login..");
-    // console.log("values is:", values);
+  // Call on Form Submit
+  const validateForm = (event, type) => {
+    event.preventDefault();
+    let validate = validateLogin({
+      username: values.email,
+      password: values.password,
+    });
+    setValues((prevState) => {
+      return {
+        ...prevState,
+        error: validate.errors,
+      };
+    });
+    if (validate.isValid) handleLogin(event, type);
   };
 
-  // console.log("values:",values);
+
+  const handleLogin = async (e, type) => {
+    e.preventDefault();
+
+    let login_Data = {};
+
+    if (type === "test") {
+      login_Data = {
+        email: "adarshbalika@gmail.com",
+        password: "adarshBalika123",
+      };
+    } else {
+      login_Data = { email: values.email, password: values.password };
+    }
+
+    actionLogin(login_Data)
+      .then((response) => {
+        if (response.data && response.status === 200) {
+          showSuccessToast("Login success..");
+          navigate("/");
+        }else if(response.data && response.status === 404){
+          showErrorToast("The email you entered is not Registered")
+        }
+        else {
+          showErrorToast("Unexpected error.Login Failed");
+        }
+      })
+      .catch((response) => {
+        if (response.data && response.data.error) {
+          showErrorToast("Unexpected error.Login Failed");
+        }
+      });
+  };
+
+  useEffect(
+    () =>
+      setTimeout(
+        () =>
+          setValues((prevState) => {
+            return {
+              ...prevState,
+              error: { username: null, password: null },
+            };
+          }),
+        10000
+      ),
+    [values.error]
+  );
 
   return (
     <>
@@ -106,7 +163,12 @@ const Login = () => {
           className="bg-img"
         />
         <AuthContainer>
-          <form className="auth-form" onSubmit={(e) => handleLogin(e)}>
+          <form
+            className="auth-form"
+            //onSubmit={(e) => handleLogin(e)}
+            noValidate
+            onSubmit={(e) => validateForm(e, "user")}
+          >
             <Typography variant="h6" sx={{ color: "secondary" }} mt={2}>
               Blithe-la nota
             </Typography>
@@ -117,6 +179,7 @@ const Login = () => {
 
             <FormControl variant="outlined" className="input" size="small">
               <Input
+                error={values.error.username !== null ? true : false}
                 type="email"
                 name={"email"}
                 value={values.email}
@@ -124,6 +187,9 @@ const Login = () => {
                 label="Email"
                 inputicon="false"
               />
+              <FormHelperText id="my-helper-text" sx={{ color: "red" }}>
+                {values.error.username}
+              </FormHelperText>
             </FormControl>
 
             <FormControl
@@ -133,6 +199,7 @@ const Login = () => {
               size="small"
             >
               <Input
+                error={values.error.password !== null ? true : false}
                 type={values.show_password === "true" ? "text" : "password"}
                 name={"password"}
                 value={values.password}
@@ -142,6 +209,9 @@ const Login = () => {
                 show_password={values.show_password}
                 handle_action={handleshowPassword}
               />
+              <FormHelperText id="my-helper-text" sx={{ color: "red" }}>
+                {values.error.password}
+              </FormHelperText>
             </FormControl>
 
             <Box>
@@ -150,6 +220,11 @@ const Login = () => {
 
             <Button variant="contained" type="submit">
               Login
+            </Button>
+
+            <Divider />
+            <Button variant="contained" onClick={(e) => handleLogin(e, "test")}>
+              Login with test credententials
             </Button>
           </form>
         </AuthContainer>

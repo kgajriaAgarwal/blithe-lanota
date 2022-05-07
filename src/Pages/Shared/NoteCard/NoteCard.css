@@ -1,0 +1,11 @@
+.lbl{
+    border: 2px solid black;
+    padding: 4px
+}
+
+.icons-div{
+    
+    margin-left: auto;
+    display: inline-flex;
+    gap: 10px;
+}

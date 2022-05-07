@@ -21,6 +21,7 @@ export function Input(props) {
     }
 
 
+
     return(
         <>
             <InputLabel htmlFor="outlined-adornment-password">
@@ -28,6 +29,7 @@ export function Input(props) {
             </InputLabel>
             <OutlinedInput
                 id={props.id}
+                error ={props.error}
                 type={props.type}
                 name={props.name}
                 value={props.value}

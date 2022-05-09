@@ -9,3 +9,14 @@
     display: inline-flex;
     gap: 10px;
 }
+
+.note-title-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* .chck-bx{
+    background-color: chartreuse;
+} */

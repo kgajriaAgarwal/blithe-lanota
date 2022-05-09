@@ -173,28 +173,13 @@ export const NavBar = (props) =>  {
                     <CustomMenuItem>
                         <Avatar /> Profile
                     </CustomMenuItem>
-                </Link>
+                </Link>                
                 <Link to="/mockman">
                     <CustomMenuItem>
                         Mockman
                     </CustomMenuItem>
                 </Link>
-                <CustomMenuItem>
-                    <Avatar /> My account
-                </CustomMenuItem>
                 <Divider />
-                <CustomMenuItem>
-                    <ListItemIcon>
-                        <PersonAdd fontSize="small" />
-                    </ListItemIcon>
-                    Add another account
-                </CustomMenuItem>
-                <CustomMenuItem>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                </CustomMenuItem>
                 <Link to="./login">
                     <CustomMenuItem>
                         <ListItemIcon>

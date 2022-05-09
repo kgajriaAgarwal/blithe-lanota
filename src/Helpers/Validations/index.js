@@ -28,7 +28,6 @@ export const validateLogin = (data) => {
 }   
 
 export const validateSignUp = (data) => {
-    // console.log("data is:", data);
     let errors = {};
     if (isBlank(data.first_name)) {
         errors.first_name = validationMessages.fieldRequired.required;
@@ -48,6 +47,21 @@ export const validateSignUp = (data) => {
       if (data.password !== data.confirm_password) {
         errors.confirm_password = validationMessages.match.invalid;
       }
+    }
+  
+    return {
+      errors,
+      isValid: isEmpty(errors),
+    };
+  };
+
+  export const validateCreateNote = (data) => {
+    let errors = {};
+    if (isBlank(data.title)) {
+        errors.title = validationMessages.fieldRequired.required;
+    }
+    if (isBlank(data.description)) {
+        errors.description = validationMessages.fieldRequired.required;
     }
   
     return {

@@ -43,11 +43,53 @@ export const ApiJson = {
         method: 'GET',
         data: {},
         headers: {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-        
+          'Content-Type': 'application/json',
+          'authorization': encodedToken
         }, 
         showResultMessage: false,
         showErrorMessage: false,
     },
+
+    //ACTION TO ADD A PARTICULAR NOTE TO NOTES LIST
+  actionAddNote:{
+    url: '/notes',
+      method: 'POST',
+      data: {
+        note:{}
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+  actionEditNote:{
+    url: '/notes/:notesId',
+      method: 'POST',
+      data: {
+        note:{}
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+    //ACTION TO DELETE NOTE FROM NOTES LIST
+    actionDeleteNote:{
+      url: '/notes/:notesId',
+        method: 'DELETE',
+        data: {},
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': encodedToken
+        }, 
+        showResultMessage: false,
+        showErrorMessage: true,
+    },
+
 }

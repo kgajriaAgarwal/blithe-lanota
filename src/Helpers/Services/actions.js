@@ -25,3 +25,22 @@ export const getAllNotes = async (data) => {
     const response = await mainApiService("getAllNotes", data);
     return response;
   };
+
+//ACTION TO ADD NOTE TO NOTES LIST..
+export const actionAddNote = async (data) => {
+  const response = await mainApiService("actionAddNote", data);
+  return response;
+};
+
+
+//ACTION TO ADD NOTE TO NOTES LIST..
+export const actionEditNote = async (data) => {
+  const response = await mainApiService("actionEditNote", data);
+  return response;
+};
+
+//action To Delete NOTE
+export const actionDeleteNote = async (data) => {
+  const response = await mainApiService("actionDeleteNote", data);
+  return response;
+};

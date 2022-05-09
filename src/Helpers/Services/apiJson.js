@@ -50,7 +50,7 @@ export const ApiJson = {
         showErrorMessage: false,
     },
 
-    //ACTION TO ADD A PARTICULAR NOTE TO NOTES LIST
+  //ACTION TO ADD A PARTICULAR NOTE TO NOTES LIST
   actionAddNote:{
     url: '/notes',
       method: 'POST',
@@ -91,5 +91,60 @@ export const ApiJson = {
         showResultMessage: false,
         showErrorMessage: true,
     },
+
+    //ROUTE - ARCHIVES
+    //Action to get All Archived Notes
+    getAllArchivedNotes: {
+      url: '/archives',
+      method: 'GET',
+      data: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: false,
+  },
+
+  //action TO Add Note to Archives
+  actionAddNotetoArchives:{
+    url: '/notes/archives/:noteId',
+      method: 'POST',
+      data: {
+        note:{}
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+  //action to Remove Note From Archives 
+  actionRemoveNoteFromArchives:{
+    url: '/archives/restore/:noteId',
+      method: 'POST',
+      data: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+  //actionDeleteFromArchives
+  actionDeleteFromArchives:{
+    url: '/archives/delete/:noteId',
+      method: 'DELETE',
+      data: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
 
 }

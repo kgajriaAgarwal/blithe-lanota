@@ -62,7 +62,7 @@ import {
               </Typography> */}
   
               <List dense={true}>
-                <Link to="#" className="sidebar-link">
+                <Link to="/" className="sidebar-link">
                   <ListItem>Notes</ListItem>
                     {/* <ListItemIcon>
                         <DescriptionIcon />
@@ -72,7 +72,7 @@ import {
                 <Link to="#" className="sidebar-link">
                   <ListItem>Labels</ListItem>
                 </Link>
-                <Link to="#" className="sidebar-link">
+                <Link to="/user/archives" className="sidebar-link">
                   <ListItem>Archived</ListItem>
                 </Link>
                 <Link to="#" className="sidebar-link">

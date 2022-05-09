@@ -6,7 +6,7 @@ import { makeServer } from "./server";
 import {
   BrowserRouter,
 } from "react-router-dom";
-import { ThemeModeProvider, NotesProvider } from "./Helpers/Context";
+import { ThemeModeProvider, NotesProvider, ArchivesProvider } from "./Helpers/Context";
 
 // Call make Server
 makeServer();
@@ -15,7 +15,9 @@ ReactDOM.render(
   <ThemeModeProvider>
     <BrowserRouter>
       <NotesProvider>
-        <App />
+        <ArchivesProvider>
+          <App />
+        </ArchivesProvider>
       </NotesProvider>
      </BrowserRouter>
    </ThemeModeProvider> 

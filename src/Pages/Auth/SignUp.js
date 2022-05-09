@@ -187,8 +187,6 @@ const SignUp = () => {
     [values.error]
   );
 
-  console.log("values 4444444", values);
-
   return (
     <>
       <CustomStack>

@@ -45,6 +45,31 @@ export const actionDeleteNote = async (data) => {
   return response;
 };
 
+//ROUTE - ARCHIVES
+//action to get All Archived Notes
+export const getAllArchivedNotes = async (data) => {
+  const response = await mainApiService("getAllArchivedNotes", data);
+  return response;
+};
+
+
+//ACTION TO ADD NOTE TO ARCHIVES LIST..
+export const actionAddNotetoArchives = async (data) => {
+  const response = await mainApiService("actionAddNotetoArchives", data);
+  return response;
+};
+
+//ACTION TO Remove NOTE from ARCHIVES LIST..
+export const actionRemoveNoteFromArchives = async (data) => {
+  const response = await mainApiService("actionRemoveNoteFromArchives", data);
+  return response;
+};
+
+//ACTION TO Remove NOTE from ARCHIVES LIST..
+export const actionDeleteFromArchives = async (data) => {
+  const response = await mainApiService("actionDeleteFromArchives", data);
+  return response;
+};
 
 
 

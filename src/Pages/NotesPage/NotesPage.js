@@ -5,7 +5,7 @@ import {
 import react, { useEffect, useState } from "react";
 import { NoteCard, SideBar } from "../Shared";
 import "./NotesPage.css";
-import { useNotes, useThemeMode } from "../../Helpers/Context";
+import { useArchives, useNotes, useThemeMode } from "../../Helpers/Context";
 import { getAllNotes } from "../../Helpers/Services/actions";
 import CreateNote from "./CreateNote";
 import { getLocalStorage, showErrorToast } from "../../Helpers/Common/Utils";
@@ -16,6 +16,7 @@ const NotesPage = (props) => {
   let authData = getLocalStorage('authData');
   const { notes, editNoteObj, setEditNoteObj } = useNotes();
   const [notesData, setNotesData] = useState([]);
+  const { archives } = useArchives();
 
   useEffect(() => {
     getAllNotes()
@@ -33,21 +34,21 @@ const NotesPage = (props) => {
       .catch((error) => {
         showErrorToast("Unexpected error.Please try again later.")
       });
-  }, [notes]);
+  }, [notes, archives]);
 
   return (
     <>
-      <Stack direction="row" spacing={2} justifyContent="space-between">
-        <SideBar />
-        <Box className="main-container-wrapper" flex={4}>
+      {/* <Stack direction="row" spacing={2} justifyContent="space-between">
+        <SideBar /> */}
+        {/* <Box className="main-container-wrapper" flex={4}> */}
           <CreateNote />
           <Box className="notes-container">
             {notesData.length?
-              notesData.map(note=> <NoteCard key={note._id} note={note} />)
+              notesData.map(note=> <NoteCard key={note._id} note={note} isModule={"NotesPage"}/>)
             :''}
           </Box>
-        </Box>
-      </Stack>
+        {/* </Box> */}
+      {/* </Stack> */}
     </>
   );
 };

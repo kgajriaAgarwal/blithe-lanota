@@ -94,7 +94,6 @@ const CreateNote = (props) => {
     });
     if (validate.isValid) {
       delete noteDetails.error;
-      console.log("new noteDetails..", noteDetails);
       if (isEdit) {
         editNote(editNoteObj._id, noteDetails, event);
       } else {

@@ -1,8 +1,9 @@
 
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
-// import PrivateRoute from '../../route/PrivateRoute';
+import PrivateRoute from '../../route/PrivateRoute';
 
+const ArchivesPage = React.lazy(() => import('../Archives/Archives'));
 const NotesPage = React.lazy(() => import('../NotesPage/NotesPage'));
 // const VideoListingPage = React.lazy(() => import('../VideoListingPage/VideoListingPage'));
 // const LikedVideosPage = React.lazy(() => import('../LikedVideosPage/LikedVideosPage'));
@@ -26,13 +27,10 @@ function NoMatch() {
 const RouteData = () =>{
     return(
         <Routes>  
-           {/* <Route exact path='/user' element={<PrivateRoute/>}>                
-              <Route exact path="/user/liked-videos"  element={<LikedVideosPage/>}/> 
-              <Route exact path='/user/playlists' element={<PlayList/>}/>
-              <Route exact path='/user/watchlater' element={<WatchLater/>}/>
-              <Route exact path='/user/history' element={<History/>}/>
+            <Route exact path='/user' element={<PrivateRoute/>}>                
+              <Route exact path="/user/archives"  element={<ArchivesPage/>}/> 
             </Route>
-            <Route exact path="/video/:videoId"  element={<Video/>}/> 
+            {/*<Route exact path="/video/:videoId"  element={<Video/>}/> 
             <Route exact path="/videos/:categoryId"  element={<VideoListingPage/>}/>  */}
             {/* <Route exact path='/profile' element={<UserProfile/>}/>
             <Route exact path='/home' element={<FeedsPage/>}/> */}

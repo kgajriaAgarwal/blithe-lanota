@@ -1,25 +1,26 @@
 import { createContext, useState, useContext } from 'react';
 import { getLocalStorage, showErrorToast, showSuccessToast } from '../Common/Utils';
-import { actionAddNote, actionDeleteNote, actionEditNote } from '../Services/actions';
+import { actionAddNote, actionAddNotetoArchives, actionDeleteFromArchives, actionEditNote, actionRemoveNoteFromArchives } from '../Services/actions';
+import { useNotes } from './NotesContext';
 
-const NotesContext = createContext();
+const ArchivesContext = createContext();
 
-const NotesProvider = ({ children}) => {
+const ArchivesProvider = ({ children}) => {
 
-    const [notes, setNotes] = useState([]);
-    const [editNoteObj, seteditNoteObj] = useState({})
-    const [isEdit, setIsEdit] = useState(false)
+    const [archives, setArchives] = useState([]);
+    const { setNotes } = useNotes();
     let authData = getLocalStorage('authData');
 
-    ////action -create note
-    const addNote = async (noteObj, event) => {
-        event.preventDefault();
-        actionAddNote({note : noteObj})
+    ////action -add Note To Archives
+    const addNoteToArchives = async (noteId,noteObj) => {
+        actionAddNotetoArchives({noteId: noteId , note : noteObj})
         
         .then(res=> {
+            console.log("res actionAddNotetoArchives", res)
             if(res.status === 201 || res.status === 200){
-                showSuccessToast("Note added Successfully!!")
+                showSuccessToast("Note Archived Successfully!!")
                 setNotes(res?.data?.notes);
+                setArchives(res?.data?.archives);
             }else if(res.status === 409){
                 showErrorToast("The note is already in your notes list.")
             }else{
@@ -35,14 +36,17 @@ const NotesProvider = ({ children}) => {
         })
       }
 
-     //action -Edit note
-     const editNote = (notesId, noteObj, event) =>{
-        event.preventDefault();
-        actionEditNote({notesId: notesId, note: noteObj})
+     //action - Unarchive note
+     const removeNoteFromArchives = async (noteId) =>{
+         debugger
+         console.log("notesId:", noteId);
+        actionRemoveNoteFromArchives({noteId: noteId})
         .then(res=> {
+            console.log("res removeNoteFromArchives", res);
             if(res.status === 201 || res.status === 200){
                 setNotes(res?.data?.notes);
-                showSuccessToast("Note updated Successfully!!")
+                setArchives(res?.data?.archives);
+                showSuccessToast("Note unArchived Successfully!!")
             }else{
                 if(encodedToken){
                     showErrorToast("Unexpected error.Please try again later.")
@@ -54,18 +58,17 @@ const NotesProvider = ({ children}) => {
         .catch((error) => {
             showErrorToast("Unexpected error.Please try again later.")
         })
-        .finally(()=>{
-            setIsEdit(false)
-            seteditNoteObj({})
-        })
     }
 
-        //API - action Delete Note
-        const deleteNote = ( notesId) =>{
-            actionDeleteNote({ notesId})
+
+
+        //API - action Delete Note permanenlty
+        const deleteNoteFromArchives = ( noteId) =>{
+            actionDeleteFromArchives({noteId: noteId})
           .then(res=> {
               if(res.status === 201 || res.status === 200){
                 setNotes(res?.data?.notes);
+                setArchives(res?.data?.archives);
                 showSuccessToast("Note deleted Successfully!!")
               }else{
                 if(encodedToken){
@@ -83,22 +86,17 @@ const NotesProvider = ({ children}) => {
 
 
     return (
-        <NotesContext.Provider  value={{
-            notes,
-            setNotes,
-            addNote,
-            editNoteObj,
-            seteditNoteObj,
-            isEdit,
-            setIsEdit,
-            editNote,
-            deleteNote
+        <ArchivesContext.Provider  value={{
+            archives, setArchives,
+            addNoteToArchives,
+            removeNoteFromArchives,
+            deleteNoteFromArchives
         }}>
           {children}
-        </NotesContext.Provider>
+        </ArchivesContext.Provider>
       );
 }
 
-const useNotes = () => useContext(NotesContext);
+const useArchives = () => useContext(ArchivesContext);
   
-export { useNotes, NotesProvider };
+export { useArchives, ArchivesProvider };

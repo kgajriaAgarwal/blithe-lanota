@@ -13,10 +13,8 @@ const ArchivesProvider = ({ children}) => {
 
     ////action -add Note To Archives
     const addNoteToArchives = async (noteId,noteObj) => {
-        actionAddNotetoArchives({noteId: noteId , note : noteObj})
-        
+        actionAddNotetoArchives({noteId: noteId , note : noteObj})        
         .then(res=> {
-            console.log("res actionAddNotetoArchives", res)
             if(res.status === 201 || res.status === 200){
                 showSuccessToast("Note Archived Successfully!!")
                 setNotes(res?.data?.notes);
@@ -38,11 +36,8 @@ const ArchivesProvider = ({ children}) => {
 
      //action - Unarchive note
      const removeNoteFromArchives = async (noteId) =>{
-         debugger
-         console.log("notesId:", noteId);
         actionRemoveNoteFromArchives({noteId: noteId})
         .then(res=> {
-            console.log("res removeNoteFromArchives", res);
             if(res.status === 201 || res.status === 200){
                 setNotes(res?.data?.notes);
                 setArchives(res?.data?.archives);

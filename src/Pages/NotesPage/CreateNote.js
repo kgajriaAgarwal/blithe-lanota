@@ -29,7 +29,7 @@ const FormBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   gap: "10px",
   height: "40vh",
-  width: "70%",
+  width: "98%",
   border: "2px solid black",
   borderRadius: "10px",
   color:
@@ -208,9 +208,9 @@ const CreateNote = (props) => {
               >
                 <MenuItem value="Home">Home</MenuItem>
                 <MenuItem value="Work">Work</MenuItem>
-                <MenuItem value="Personal">Personal</MenuItem>
-                <MenuItem value="Exercise">Exercise</MenuItem>
-                <MenuItem value="Chores">Chores</MenuItem>
+                {/* <MenuItem value="Personal">Personal</MenuItem> */}
+                {/* <MenuItem value="Exercise">Exercise</MenuItem> */}
+                {/* <MenuItem value="Chores">Chores</MenuItem> */}
                 <MenuItem value="Health">Health</MenuItem>
                 <MenuItem value="Surgery">Surgery</MenuItem>
                 <MenuItem value="Paitents">Paitents</MenuItem>

@@ -13,10 +13,11 @@ import "./NoteCard.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import EditIcon from "@mui/icons-material/Edit";
-import { useArchives, useNotes } from "../../../Helpers/Context";
+import { useArchives, useNotes, useTrash } from "../../../Helpers/Context";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import PushPinOutlinedIcon from "@mui/icons-material/PushPinOutlined";
 import PushPinIcon from "@mui/icons-material/PushPin";
+import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 
 const NoteCustomBox = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -39,6 +40,7 @@ export const NoteCard = (props) => {
   const { note, isModule } = props;
   const { seteditNoteObj, editNoteObj, setIsEdit, deleteNote } = useNotes();
   const { addNoteToArchives, removeNoteFromArchives, deleteNoteFromArchives } = useArchives();
+  const { addNoteToTrash, restoreNoteFromTrash, deleteNoteFromTrash } = useTrash();
 
   return (
     <NoteCustomBox bgcolor={note.noteColor}>
@@ -79,14 +81,16 @@ export const NoteCard = (props) => {
           ) : (
             ""
           )}
-          <Tooltip
-            title={isModule === "ArchivesPage" ? "Unarchive" : "archive"}
+
+          {isModule==="TrashPage"?"":
+            <Tooltip
+            title={(isModule === "NotesPage") ? "Archive" : "Unarchive"}
           >
             <IconButton
               aria-label="archive"
               size="small"
               onClick={() =>
-                isModule === "NotesPage"
+                (isModule === "NotesPage" || isModule === "TrashPage")
                   ? addNoteToArchives(note._id, note)
                   : removeNoteFromArchives(note._id)
               }
@@ -94,19 +98,42 @@ export const NoteCard = (props) => {
               <ArchiveIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Delete">
+          }
+          
+
+          {  (isModule === "NotesPage" || isModule === "ArchivesPage")?
+          "":
+          <Tooltip title="Restore from trash">
             <IconButton
               aria-label="delete"
               size="small"
-            onClick={() =>
-                isModule === "NotesPage"
-                  ? deleteNote(note._id)
-                  : deleteNoteFromArchives(note._id)
-              }
+            // onClick={() =>
+            //     isModule === "NotesPage"
+            //       ? deleteNote(note._id)
+            //       : deleteNoteFromArchives(note._id)
+            //   }
+            onClick={() => restoreNoteFromTrash(note._id)}
+            >
+              <RestoreFromTrashIcon />
+            </IconButton>
+          </Tooltip>
+          }
+
+          <Tooltip title={  (isModule === "NotesPage" || isModule === "ArchivesPage")?"Move to Trash":"Delete from trash"}>
+            <IconButton
+              aria-label="delete"
+              size="small"
+            // onClick={() =>
+            //     isModule === "NotesPage"
+            //       ? deleteNote(note._id)
+            //       : deleteNoteFromArchives(note._id)
+            //   }
+            onClick={() => (isModule === "NotesPage")? addNoteToTrash(note._id, note) : (isModule === "TrashPage")? deleteNoteFromTrash(note._id): deleteNoteFromArchives(note._id) }
             >
               <DeleteIcon />
             </IconButton>
           </Tooltip>
+          
         </div>
       </BottomBox>
     </NoteCustomBox>

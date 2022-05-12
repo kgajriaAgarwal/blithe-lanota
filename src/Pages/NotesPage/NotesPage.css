@@ -1,7 +1,10 @@
-
+.middle-conatiner{
+    padding-left: 1rem;
+}
 
 .main-container{
     padding-top: 1.5rem;
+    /* padding-left: 1rem; */
 }
 
 .create-note{
@@ -54,7 +57,7 @@
 .notes-container{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 98%;
     flex-wrap: wrap;
     gap: 10px
 }

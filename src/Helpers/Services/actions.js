@@ -71,6 +71,29 @@ export const actionDeleteFromArchives = async (data) => {
   return response;
 };
 
+//ROUTE - TRASH
+//action to get All Trashed Notes
+export const getAllTrashedNotes = async (data) => {
+  const response = await mainApiService("getAllTrashedNotes", data);
+  return response;
+};
 
+//addNoteToTrash
+export const actionAddNoteToTrash = async (data) => {
+  const response = await mainApiService("actionAddNoteToTrash", data);
+  return response;
+};
+
+//ACTION TO Remove NOTE from ARCHIVES LIST..
+export const actionRestoreNoteFromTrash = async (data) => {
+  const response = await mainApiService("actionRestoreNoteFromTrash", data);
+  return response;
+};
+
+//actionDeleteFromTrash
+export const actionDeleteFromTrash = async (data) => {
+  const response = await mainApiService("actionDeleteFromTrash", data);
+  return response;
+};
 
 

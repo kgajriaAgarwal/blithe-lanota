@@ -147,4 +147,60 @@ export const ApiJson = {
       showErrorMessage: true,
   },
 
+  //ROUTE - TRASHED
+  //ACTION TO get All Trashed Notes
+  getAllTrashedNotes: {
+    url: '/trash',
+    method: 'GET',
+    data: {},
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': encodedToken
+    }, 
+    showResultMessage: false,
+    showErrorMessage: false,
+},
+
+  //actionAddNoteToTrash
+  actionAddNoteToTrash:{
+    url: '/notes/trash/:noteId',
+      method: 'POST',
+      data: {
+        note:{}
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+  //actionRemoveNoteFromTrash
+  actionRestoreNoteFromTrash:{
+    url: '/trash/restore/:noteId',
+      method: 'POST',
+      data: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+  //actionDeleteFromTrash
+  actionDeleteFromTrash:{
+    url: '/trash/delete/:noteId',
+      method: 'DELETE',
+      data: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'authorization': encodedToken
+      }, 
+      showResultMessage: false,
+      showErrorMessage: true,
+  },
+
+
 }

@@ -1,0 +1,9 @@
+
+.filter-form{
+    display: flex;
+    flex-direction: column; 
+}
+
+.MuiFormControlLabel-root{
+    margin-left: 0;
+}

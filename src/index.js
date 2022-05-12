@@ -6,21 +6,27 @@ import { makeServer } from "./server";
 import {
   BrowserRouter,
 } from "react-router-dom";
-import { ThemeModeProvider, NotesProvider, ArchivesProvider } from "./Helpers/Context";
+import { ThemeModeProvider, NotesProvider, ArchivesProvider, TrashProvider, ReducerProvider, LayoutProvider } from "./Helpers/Context";
 
 // Call make Server
 makeServer();
 
 ReactDOM.render(
-  <ThemeModeProvider>
-    <BrowserRouter>
-      <NotesProvider>
-        <ArchivesProvider>
-          <App />
-        </ArchivesProvider>
-      </NotesProvider>
-     </BrowserRouter>
-   </ThemeModeProvider> 
+  <LayoutProvider>
+    <ThemeModeProvider>
+      <BrowserRouter>
+        <ReducerProvider>
+          <NotesProvider>
+            <ArchivesProvider>
+              <TrashProvider>
+                <App />
+              </TrashProvider>
+            </ArchivesProvider>
+          </NotesProvider>
+        </ReducerProvider>
+      </BrowserRouter>
+    </ThemeModeProvider> 
+   </LayoutProvider>
   ,
   document.getElementById("root")
 );

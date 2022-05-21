@@ -21,11 +21,10 @@ const LeftBarBox = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     alignItems: "flex-start",
-
     zIndex: 2,
-
     width: "50%",
     marginLeft: "auto",
+    height:'10vh',
   },
   [theme.breakpoints.up("sm")]: {
     alignItems: "flex-end",
@@ -108,6 +107,7 @@ export const SideBar = (props) => {
             </ListItem>
           </List>
         </Box>
+
       </LeftBarContentBox>
     </LeftBarBox>
   );

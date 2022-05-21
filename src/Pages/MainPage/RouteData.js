@@ -7,6 +7,7 @@ import { NoMatch } from '../Shared';
 const TrashPage = React.lazy(() => import('../Trash/Trash'));
 const ArchivesPage = React.lazy(() => import('../Archives/Archives'));
 const NotesPage = React.lazy(() => import('../NotesPage/NotesPage'));
+const UserPage = React.lazy(() => import('../UserPage/User'));
 
 
 //Routing Data
@@ -16,6 +17,7 @@ const RouteData = () =>{
             <Route exact path='/user' element={<PrivateRoute/>}>                
               <Route exact path="/user/archives"  element={<ArchivesPage/>}/> 
               <Route exact path="/user/trash"  element={<TrashPage/>}/>
+              <Route exact path="/user/profile"  element={<UserPage/>}/>
             </Route>
             <Route exact path='/home' element={<NotesPage/>}/> 
             <Route exact path='/' element={<NotesPage/>}/>

@@ -20,9 +20,36 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Logout from "@mui/icons-material/Logout";
 import { Link, useNavigate } from "react-router-dom";
 import { getLocalStorage, clearLocalStorage, showSuccessToast } from "../../../Helpers/Common/Utils";
-import { useLayout, useThemeMode } from "../../../Helpers/Context";
+import { useLayout, useNotes, useReducerContext, useThemeMode } from "../../../Helpers/Context";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MenuIcon from "@mui/icons-material/Menu";
+
+const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+}));
+
+const Search = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.text.tertiary,
+  padding: "0 10px",
+  borderRadius: theme.shape.borderRadius,
+  width: "40%",
+}));
+
+const SearchInput = styled(InputBase)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  cursor: "pointer",
+}));
+
+const Icons = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  color: theme.palette.text.primary,
+}));
+
+const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
+  color: theme.palette.text.primary,
+}));
 
 export const NavBar = (props) => {
   const navigate = useNavigate();
@@ -30,37 +57,11 @@ export const NavBar = (props) => {
   let authData = getLocalStorage("authData");
   const { showLeftBar, showRightBar, setShowLeftbar, setShowRightbar } =
     useLayout();
-
-  const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-    display: "flex",
-    justifyContent: "space-between",
-  }));
-
-  const Search = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.text.tertiary,
-    padding: "0 10px",
-    borderRadius: theme.shape.borderRadius,
-    width: "40%",
-  }));
-
-  const SearchInput = styled(InputBase)(({ theme }) => ({
-    color: theme.palette.primary.main,
-    cursor: "pointer",
-  }));
-
-  const Icons = styled(Box)(({ theme }) => ({
-    display: "flex",
-    alignItems: "center",
-    color: theme.palette.text.primary,
-  }));
-
-  const CustomMenuItem = styled(MenuItem)(({ theme }) => ({
-    color: theme.palette.text.primary,
-  }));
-
+  const { dispatch,labels, priority, searchTerm, timeSort } = useReducerContext();
+  const { notes, editNoteObj, setEditNoteObj } = useNotes();
+  const [searchText, setSearchText ] = useState('')
 
   const handleLogout=() =>{
-    console.log("handle logout..")
     if(authData){
       clearLocalStorage();
       showSuccessToast("You have been logged out successfully!!")
@@ -82,8 +83,14 @@ export const NavBar = (props) => {
             </IconButton>
             <Typography variant="h6">Blithe-la nota</Typography>
         </Box>
-            <Search>
-            <SearchInput placeholder="Search.." />
+            <Search >
+            <SearchInput placeholder="Search.." value={searchText} onChange={(e)=> {
+              setSearchText(e.target.value)
+              dispatch({
+                type:"SEARCH_BAR",
+                payload: e.target.value
+              });
+            }}/>
             </Search>
         
         <Icons>
@@ -144,7 +151,7 @@ export const NavBar = (props) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "top" }}
       >
-        <Link to="/profile">
+        <Link to="/user/profile">
           <CustomMenuItem>
             <Avatar /> Profile
           </CustomMenuItem>

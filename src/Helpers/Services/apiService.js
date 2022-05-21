@@ -1,20 +1,11 @@
-//code is commented in this file for future perspective..
-////console.log is also commented , until the time the this app is fully developed
+
 import axios from 'axios';
 import { ApiJson } from './apiJson';
 
-// import { ApiJson } from './apiJson';
-
-// import {
-//   showErrorToast,
-//   showSuccessToast, 
-//   getLocalStorage,
-// } from './../Helpers/Utils';
 import {getLocalStorage} from '../Common/Utils';
-// import CONSTANTS from './../Helpers/Constants'; 
+
 
 let apiFailCounter = 0;
-// axios.defaults.baseURL = CONSTANTS.baseUrl;
 axios.defaults.baseURL = "/api";
  
 axios.interceptors.request.use(
@@ -80,7 +71,6 @@ const injectHeadersToReq = async (_headers_) => {
 };
 
 const handleErrorByStatus = (error) => {
-console.log("error:", error);
   if (error && error.data.error) {
     if(error.status === 401){
         console.log("error..", error)

@@ -96,4 +96,9 @@ export const actionDeleteFromTrash = async (data) => {
   return response;
 };
 
+//getUserProfile
+export const getUserProfile = async (data) => {
+  const response = await mainApiService("getUserProfile", data);
+  return response;
+};
 

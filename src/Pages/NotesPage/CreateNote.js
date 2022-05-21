@@ -75,9 +75,6 @@ const CreateNote = (props) => {
     error: { title: null, description: null },
   });
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   // Call on Form Submit
   const validateForm = (event) => {
@@ -93,11 +90,12 @@ const CreateNote = (props) => {
       };
     });
     if (validate.isValid) {
-      delete noteDetails.error;
+      delete noteDetails.error;     
+      const note_details = {...noteDetails, createdDate: new Date().toDateString()} 
       if (isEdit) {
-        editNote(editNoteObj._id, noteDetails, event);
+        editNote(editNoteObj._id, note_details, event);
       } else {
-        addNote(noteDetails, event);
+        addNote(note_details, event);
       }
 
       setNoteDetails({
@@ -208,9 +206,6 @@ const CreateNote = (props) => {
               >
                 <MenuItem value="Home">Home</MenuItem>
                 <MenuItem value="Work">Work</MenuItem>
-                {/* <MenuItem value="Personal">Personal</MenuItem> */}
-                {/* <MenuItem value="Exercise">Exercise</MenuItem> */}
-                {/* <MenuItem value="Chores">Chores</MenuItem> */}
                 <MenuItem value="Health">Health</MenuItem>
                 <MenuItem value="Surgery">Surgery</MenuItem>
                 <MenuItem value="Paitents">Paitents</MenuItem>

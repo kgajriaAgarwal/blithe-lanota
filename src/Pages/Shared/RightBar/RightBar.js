@@ -59,11 +59,9 @@ export const RightBar = () => {
       type: event.target.value.toUpperCase(),
     });
     setSortByDate(event.target.value);
-    console.log(event.target.value);
   };
 
   const handleReset = () => {
-    console.log("handle reset");
     setChecked([]);
     setSortByDate(null);
     dispatch({

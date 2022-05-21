@@ -7,17 +7,18 @@ const labelFilter = (notes, labels) => {
   };
   
   const priorityfiltering = (notes, priority) => {
-    let filteredPriorities =
-      priority.length !== 0
-        ? notes.filter((p) => priority.includes(p.priority))
-        : notes;
-    return filteredPriorities;
-  };
+      let filteredPriorities = [];
+      for(let i= 0;i< priority.length;i++){
+          const result = notes.filter(note=> note.priority === priority[i])
+          filteredPriorities.push(...result)
+      }
+      return filteredPriorities;
+    };
   
   const getSortedDates = (notes, timeSort) => {
     const dateToTime = (date) => {
-      const d = new Date(date);
-      return d.getTime();
+      const dt = new Date(date);
+      return dt.getTime();
     };
   
     if (timeSort === "Latest") {

@@ -13,10 +13,8 @@ const TrashProvider = ({ children}) => {
 
       ////action -add Note To Archives
     const addNoteToTrash = async (noteId , noteObj) => {
-        console.log("noteId , noteObj", noteId , noteObj);
         actionAddNoteToTrash({noteId: noteId , note: noteObj})        
         .then(res=> {
-            console.log('res of add to trash', res);
             if(res.status === 201 || res.status === 200){
                 showSuccessToast("Note Trasheded Successfully!!")
                 setNotes(res?.data?.notes);

@@ -202,5 +202,18 @@ export const ApiJson = {
       showErrorMessage: true,
   },
 
+  //Action to get user
+  //   getUserProfile: {
+  //     url: '/api/user',
+  //     method: 'GET',
+  //     data: {},
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'authorization': encodedToken
+  //     }, 
+  //     showResultMessage: false,
+  //     showErrorMessage: false,
+  // },
+
 
 }

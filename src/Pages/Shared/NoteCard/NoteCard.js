@@ -107,12 +107,7 @@ export const NoteCard = (props) => {
             <IconButton
               aria-label="delete"
               size="small"
-            // onClick={() =>
-            //     isModule === "NotesPage"
-            //       ? deleteNote(note._id)
-            //       : deleteNoteFromArchives(note._id)
-            //   }
-            onClick={() => restoreNoteFromTrash(note._id)}
+              onClick={() => restoreNoteFromTrash(note._id)}
             >
               <RestoreFromTrashIcon />
             </IconButton>
@@ -123,12 +118,7 @@ export const NoteCard = (props) => {
             <IconButton
               aria-label="delete"
               size="small"
-            // onClick={() =>
-            //     isModule === "NotesPage"
-            //       ? deleteNote(note._id)
-            //       : deleteNoteFromArchives(note._id)
-            //   }
-            onClick={() => (isModule === "NotesPage")? addNoteToTrash(note._id, note) : (isModule === "TrashPage")? deleteNoteFromTrash(note._id): deleteNoteFromArchives(note._id) }
+              onClick={() => (isModule === "NotesPage")? addNoteToTrash(note._id, note) : (isModule === "TrashPage")? deleteNoteFromTrash(note._id): deleteNoteFromArchives(note._id) }
             >
               <DeleteIcon />
             </IconButton>

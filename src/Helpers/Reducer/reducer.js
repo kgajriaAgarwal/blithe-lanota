@@ -18,6 +18,12 @@ export const reducer = (state, action) => {
             ? state[action.filterType].filter((type) => type !== action.filter)
             : [...state[action.filterType], action.filter],
         };
+
+      case "SEARCH_BAR":
+        return {
+          ...state,
+          searchTerm: action.payload,
+        };
   
       // priority reset
       case "RESET":
